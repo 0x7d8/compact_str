@@ -1158,7 +1158,7 @@ impl CompactString {
     /// The resulting capactity is never less than the size of 3×[`usize`],
     /// i.e. the capacity than can be inlined.
     ///
-    /// This method is effectively the same as calling [`string.shrink_to(0)`].
+    /// This method is effectively the same as calling `string.shrink_to(0)`.
     ///
     /// # Examples
     ///
@@ -1374,6 +1374,7 @@ impl CompactString {
         from_int: impl Fn(u16) -> u16,
         from_bytes: impl Fn([u8; 2]) -> u16,
     ) -> Result<Self, Utf16Error> {
+        #[allow(clippy::manual_is_multiple_of)]
         if v.len() % 2 != 0 {
             // Input had an odd number of bytes.
             return Err(Utf16Error(()));
@@ -1415,6 +1416,7 @@ impl CompactString {
         // Notice: We write the string "�" instead of the character '�', so the character does not
         //         have to be formatted before it can be appended.
 
+        #[allow(clippy::manual_is_multiple_of)]
         let (trailing_extra_byte, v) = match v.len() % 2 != 0 {
             true => (true, &v[..v.len() - 1]),
             false => (false, v),
