@@ -6,6 +6,8 @@ mod arbitrary;
 mod borsh;
 #[cfg(feature = "bytes")]
 mod bytes;
+#[cfg(feature = "defmt")]
+mod defmt;
 #[cfg(feature = "diesel")]
 mod diesel;
 #[cfg(feature = "markup")]
