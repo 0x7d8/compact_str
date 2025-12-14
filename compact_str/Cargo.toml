@@ -12,7 +12,7 @@ keywords = ["string", "compact", "small", "memory", "mutable"]
 categories = ["encoding", "parsing", "memory-management", "text-processing"]
 
 [features]
-default = ["std"]
+default = ["std", "sqlx", "sqlx-postgres", "sqlx-mysql", "sqlx-sqlite"]
 std = []
 
 arbitrary = ["dep:arbitrary"]
