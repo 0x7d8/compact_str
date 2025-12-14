@@ -19,6 +19,11 @@ where
     fn type_info() -> <DB as Database>::TypeInfo {
         <&str as Type<DB>>::type_info()
     }
+
+    #[inline]
+    fn compatible(ty: &<DB as Database>::TypeInfo) -> bool {
+        <&str as Type<DB>>::compatible(ty)
+    }
 }
 
 #[cfg_attr(docsrs, doc(cfg(feature = "sqlx")))]
