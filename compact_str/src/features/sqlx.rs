@@ -100,8 +100,14 @@ impl<'q> Encode<'q, sqlx::Postgres> for CompactString {
 #[cfg(feature = "sqlx-postgres")]
 #[cfg_attr(docsrs, doc(cfg(feature = "sqlx-postgres")))]
 impl sqlx::postgres::PgHasArrayType for CompactString {
+    #[inline]
     fn array_type_info() -> sqlx::postgres::PgTypeInfo {
         <std::string::String as sqlx::postgres::PgHasArrayType>::array_type_info()
+    }
+
+    #[inline]
+    fn array_compatible(ty: &sqlx::postgres::PgTypeInfo) -> bool {
+        <std::string::String as sqlx::postgres::PgHasArrayType>::array_compatible(ty)
     }
 }
 
