@@ -9,6 +9,24 @@ impl utoipa::__dev::ComposeSchema for CompactString {
     }
 }
 
+#[cfg_attr(docsrs, doc(cfg(feature = "utoipa")))]
+impl utoipa::ToSchema for CompactString {
+    #[inline]
+    fn name() -> std::borrow::Cow<'static, str> {
+        std::string::String::name()
+    }
+
+    #[inline]
+    fn schemas(
+        schemas: &mut std::vec::Vec<(
+            std::string::String,
+            utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>,
+        )>,
+    ) {
+        std::string::String::schemas(schemas)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
