@@ -5,7 +5,7 @@ impl utoipa::__dev::ComposeSchema for CompactString {
     fn compose(
         new_generics: std::vec::Vec<utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>>,
     ) -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
-        std::string::String::compose(new_generics)
+        str::compose(new_generics)
     }
 }
 
@@ -13,7 +13,7 @@ impl utoipa::__dev::ComposeSchema for CompactString {
 impl utoipa::ToSchema for CompactString {
     #[inline]
     fn name() -> std::borrow::Cow<'static, str> {
-        std::string::String::name()
+        str::name()
     }
 
     #[inline]
@@ -23,7 +23,7 @@ impl utoipa::ToSchema for CompactString {
             utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>,
         )>,
     ) {
-        std::string::String::schemas(schemas)
+        str::schemas(schemas)
     }
 }
 
@@ -35,5 +35,7 @@ mod tests {
             utoipa::schema!(std::string::String),
             utoipa::schema!(crate::CompactString)
         );
+        assert_eq!(utoipa::schema!(str), utoipa::schema!(crate::CompactString));
+        assert_eq!(utoipa::schema!(&str), utoipa::schema!(crate::CompactString));
     }
 }
