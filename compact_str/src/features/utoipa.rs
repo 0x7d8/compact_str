@@ -1,11 +1,16 @@
 use crate::CompactString;
+use std::vec::Vec;
 
 #[cfg_attr(docsrs, doc(cfg(feature = "utoipa")))]
 impl utoipa::__dev::ComposeSchema for CompactString {
     fn compose(
-        new_generics: std::vec::Vec<utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>>,
+        _new_generics: std::vec::Vec<utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>>,
     ) -> utoipa::openapi::RefOr<utoipa::openapi::schema::Schema> {
-        str::compose(new_generics)
+        utoipa::schema!(
+            #[inline]
+            std::string::String
+        )
+        .into()
     }
 }
 
@@ -13,7 +18,7 @@ impl utoipa::__dev::ComposeSchema for CompactString {
 impl utoipa::ToSchema for CompactString {
     #[inline]
     fn name() -> std::borrow::Cow<'static, str> {
-        str::name()
+        std::string::String::name()
     }
 
     #[inline]
@@ -23,7 +28,7 @@ impl utoipa::ToSchema for CompactString {
             utoipa::openapi::RefOr<utoipa::openapi::schema::Schema>,
         )>,
     ) {
-        str::schemas(schemas)
+        std::string::String::schemas(schemas)
     }
 }
 
